@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="1st.css">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+    <script src="https://kit.fontawesome.com/f99c06f46b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="first">
+        <div class="first-i">
+            <div class="first-ii">
+                <i class="ri-calculator-line"></i>
+                <!-- <i class="fa-solid fa-calculator"></i> -->
+                <p style="font-size: 13px; color: white;">Calculator</p>
+            </div>
+            <div class="first-iv">
+                <button><i class="fa-solid fa-minus"></i></button>
+                <button><i class="fa-regular fa-square"></i></button>
+                <button><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+
+        <div class="second">
+            <div class="second-i">
+                <i class="ri-menu-line"></i>
+                <h3>Standard</h3>
+                <i class="ri-edit-box-line"></i>
+            </div>
+            <i id="sol" class="ri-history-line"></i>
+        </div>
+
+        <div class="inp">
+            <input type="text" class="inpu" id="input2">
+            <input type="text" class="inpuu" id="input">
+        </div>
+
+        <div class="third">
+            <button>MC</button>
+            <button>MR</button>
+            <button class="aa">M+</button>
+            <button class="aa">M-</button>
+            <button class="aa">MS</button>
+            <button>M</button>
+        </div>
+
+        <div class="grid">
+            <button onclick="sign('%')">%</button>
+            <button onclick="cee()">CE</button>
+            <button onclick="cee()">C</button>
+            <button onclick="deleet()">Del</button>
+            <button onclick="sign()">1/x</button>
+            <button onclick="sign()">2\x</button>
+            <button onclick="sign()">1</button>
+            <button onclick="sign('/')">/</button>
+            <button class="bb" onclick="cals(7)">7</button>
+            <button class="bb" onclick="cals(8)">8</button>
+            <button class="bb" onclick="cals(9)">9</button>
+            <button onclick="sign('*')"><i class="ri-close-line"></i></button>
+            <button class="bb" onclick="cals(4)">4</button>
+            <button class="bb" onclick="cals(5)">5</button>
+            <button class="bb" onclick="cals(6)">6</button>
+            <button onclick="sign('-')"><i class="ri-subtract-line"></i></button>
+            <button class="bb" onclick="cals(1)">1</button>
+            <button class="bb" onclick="cals(2)">2</button>
+            <button class="bb" onclick="cals(3)">3</button>
+            <button onclick="sign('+')"><i class="ri-add-line"></i></button>
+            <button class="bb" onclick="cals()"><sub>+</sub><sub>/</sub><sub>-</sub></button>
+            <button class="bb" onclick="cals(0)">0</button>
+            <button class="bb" onclick="cals()">.</button>
+            <button onclick="equals('=')"><i class="ri-equal-line"></i></button>
+        </div>
+    </div>
+    
+</body>
+</html>
+
+<script>
+    let numbers = document.getElementById('input');
+    let num = document.getElementById('input2');
+    let shouldClear = false
+    let first_value,operate=''
+    function cals(number){
+        if (shouldClear==true){
+            numbers.value='';
+            shouldClear=false
+        }
+        numbers.value+=(number) 
+    }
+
+    function sign(operator){
+        if(operate){
+            equals()
+        }
+        num.value = numbers.value + operator;
+        shouldClear=true
+        operate=operator
+        first_value=numbers.value
+    }
+
+    function equals(equal){
+        num.value += numbers.value
+        num.value = num.value + equal
+        if (operate=='-'){
+            numbers.value=first_value-numbers.value
+        }
+        if (operate=='+'){
+            numbers.value=Number(first_value)+Number(numbers.value)
+        }
+        if (operate=='/'){
+            numbers.value=Number(first_value)/Number(numbers.value)
+        }
+        if (operate=='*'){
+            numbers.value=first_value*numbers.value
+        }
+    }
+    
+    function cee(){
+        document.getElementById('input').value= "";
+        document.getElementById('input2').value= "";
+        operate = ''
+    }
+    
+    function deleet(){
+        numbers.value = numbers.value.slice(0,-1)
+    }
+</script>
